@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Welcome, {{ name }}!</h1>
+
+    <h2>AI Resume Analyzer Dashboard</h2>
+
+    <p>
+        Choose an option below.
+    </p>
+
+
+    <div class="dashboard">
+
+        <a href="{{ url_for('analyze') }}"
+           class="dashboard-button">
+
+            📄 Analyze Resume
+
+        </a>
+
+
+        <a href="{{ url_for('history') }}"
+           class="dashboard-button">
+
+            📊 Analysis History
+
+        </a>
+
+
+        <a href="{{ url_for('jobs') }}"
+           class="dashboard-button">
+
+            💼 Job Recommendations
+
+        </a>
+
+
+        <a href="{{ url_for('logout') }}"
+           class="dashboard-button">
+
+            🚪 Logout
+
+        </a>
+
+    </div>
+
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}">
+    
+</script>  
+
+
+</body>
+
+</html>

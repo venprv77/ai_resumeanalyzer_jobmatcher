@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📝 Resume Analysis Result</h1>
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message">{{ message }}</div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+    <div class="result-card">
+
+        <h2>Match Score</h2>
+        <div class="score-large">{{ result.match_score }}%</div>
+
+        <div class="progress">
+            <div class="progress-bar" style="width: {{ result.match_score }}%;"></div>
+        </div>
+
+        <h3>Matching Skills</h3>
+        {% if result.matching_skills %}
+            <ul>
+                {% for skill in result.matching_skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No matching skills found.</p>
+        {% endif %}
+
+        <h3>Missing Skills</h3>
+        {% if result.missing_skills %}
+            <ul>
+                {% for skill in result.missing_skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No missing skills detected.</p>
+        {% endif %}
+
+        <h3>Strengths</h3>
+        {% if result.strengths %}
+            <ul>
+                {% for item in result.strengths %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No strengths detected.</p>
+        {% endif %}
+
+        <h3>Weaknesses</h3>
+        {% if result.weaknesses %}
+            <ul>
+                {% for item in result.weaknesses %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No weaknesses detected.</p>
+        {% endif %}
+
+        <h3>Suggestions</h3>
+        {% if result.suggestions %}
+            <ul>
+                {% for item in result.suggestions %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No suggestions available.</p>
+        {% endif %}
+
+        <h3>Recommended Roles</h3>
+        {% if result.recommended_roles %}
+            <ul>
+                {% for role in result.recommended_roles %}
+                    <li>{{ role }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recommended roles available.</p>
+        {% endif %}
+
+    </div>
+
+    <br>
+
+    <a href="{{ url_for('analyze') }}" class="button">Back to Analyze</a>
+    <a href="{{ url_for('history') }}" class="button">View History</a>
+    <a href="{{ url_for('jobs') }}" class="button">Job Recommendations</a>
+
+</div>
+
+</body>
+
+</html>

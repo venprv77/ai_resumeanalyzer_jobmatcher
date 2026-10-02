@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 500px;
+    max-width: 90%;
+    margin: 60px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h2,
+h3 {
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 8px 5px 0 0;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard-button {
+    display: block;
+    padding: 14px;
+    text-align: center;
+    background: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.dashboard-button:hover {
+    opacity: 0.85;
+}
+
+.message {
+    padding: 10px;
+    background: #eee;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.5;
+}
+/* ==========================================
+   AI RESULT
+========================================== */
+
+.result-card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    font-size: 18px;
+}
+
+
+.result-card h2 {
+    margin-bottom: 15px;
+}
+
+
+.result-card ul {
+    padding-left: 25px;
+}
+
+
+.result-card li {
+    margin: 8px 0;
+}
+
+
+/* ==========================================
+   SCORE
+========================================== */
+
+.score {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+
+
+.score-large {
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    margin: 24px;
+    color: #2563eb;
+}
+
+
+.progress {
+    width: 100%;
+    height: 25px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.progress-bar {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 20px;
+    transition: width 0.8s ease;
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+}
+
+
+.button:hover {
+    opacity: 0.85;
+}
+/* ==========================================
+   HISTORY
+========================================== */
+
+.score-small {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+.history-text {
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 8px;
+    white-space: pre-line;
+    margin-bottom: 15px;
+}
+
+
+.result-card h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+
+.result-card {
+    margin-bottom: 25px;
+}
+
+
+@media (max-width: 600px) {
+    .result-card {
+        padding: 18px;
+        font-size: 16px;
+    }
+
+    .score-large {
+        font-size: 52px;
+    }
+}

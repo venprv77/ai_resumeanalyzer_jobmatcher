@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>AI Resume Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>AI Resume Analyzer</h1>
+
+        <p>
+            AI Resume Analyzer & Job Matcher
+        </p>
+
+        <p>
+            Analyze your resume and find how well
+            it matches a job.
+        </p>
+
+        <br>
+
+        <a href="{{ url_for('register') }}"
+           class="button">
+
+            Register
+
+        </a>
+
+        <a href="{{ url_for('login') }}"
+           class="button">
+
+            Login
+
+        </a>
+
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

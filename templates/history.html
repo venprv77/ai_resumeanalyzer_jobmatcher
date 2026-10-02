@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Analysis History</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <h1>📊 Analysis History</h1>
+
+    <p>
+        View your previous resume analyses.
+    </p>
+
+
+    <!-- ==========================================
+         FLASH MESSAGES
+    =========================================== -->
+
+    {% with messages = get_flashed_messages() %}
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- ==========================================
+         CHECK HISTORY
+    =========================================== -->
+
+    {% if analyses %}
+
+
+        {% for analysis in analyses %}
+
+
+            <!-- ==================================
+                 ANALYSIS CARD
+            =================================== -->
+
+            <div class="result-card">
+
+
+                <h2>
+                    📄 {{ analysis.filename }}
+                </h2>
+
+
+                <!-- DATE -->
+
+                <p>
+
+                    <strong>
+                        Date:
+                    </strong>
+
+                    {{ analysis.created_at }}
+
+                </p>
+
+
+                <!-- SCORE -->
+
+                <h3>
+                    🎯 Match Score
+                </h3>
+
+
+                <div class="score-small">
+
+                    {{ analysis.match_score }}%
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width: {{ analysis.match_score }}%;"
+                    >
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <!-- ==================================
+                     MATCHING SKILLS
+                =================================== -->
+
+                <h3>
+                    ✅ Matching Skills
+                </h3>
+
+                {% if analysis.matching_skills %}
+
+                    <div class="history-text">
+
+                        {{ analysis.matching_skills }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No matching skills found.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- ==================================
+                     MISSING SKILLS
+                =================================== -->
+
+                <h3>
+                    ❌ Missing Skills
+                </h3>
+
+                {% if analysis.missing_skills %}
+
+                    <div class="history-text">
+
+                        {{ analysis.missing_skills }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No missing skills.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- ==================================
+                     STRENGTHS
+                =================================== -->
+
+                <h3>
+                    💪 Strengths
+                </h3>
+
+                {% if analysis.strengths %}
+
+                    <div class="history-text">
+
+                        {{ analysis.strengths }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No strengths available.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- ==================================
+                     WEAKNESSES
+                =================================== -->
+
+                <h3>
+                    ⚠️ Weaknesses
+                </h3>
+
+                {% if analysis.weaknesses %}
+
+                    <div class="history-text">
+
+                        {{ analysis.weaknesses }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No weaknesses available.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- ==================================
+                     SUGGESTIONS
+                =================================== -->
+
+                <h3>
+                    💡 Suggestions
+                </h3>
+
+                {% if analysis.suggestions %}
+
+                    <div class="history-text">
+
+                        {{ analysis.suggestions }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No suggestions available.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- ==================================
+                     JOB ROLES
+                =================================== -->
+
+                <h3>
+                    💼 Recommended Job Roles
+                </h3>
+
+                {% if analysis.recommended_roles %}
+
+                    <div class="history-text">
+
+                        {{ analysis.recommended_roles }}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No recommended roles available.
+                    </p>
+
+                {% endif %}
+
+
+            </div>
+
+
+        {% endfor %}
+
+
+    {% else %}
+
+
+        <!-- ==========================================
+             EMPTY HISTORY
+        =========================================== -->
+
+        <div class="result-card">
+
+            <h2>
+                📭 No Analysis History
+            </h2>
+
+            <p>
+                You haven't analyzed a resume yet.
+            </p>
+
+            <br>
+
+            <a
+                href="{{ url_for('analyze') }}"
+                class="button"
+            >
+                📄 Analyze Resume
+            </a>
+
+        </div>
+
+
+    {% endif %}
+
+
+    <!-- ==========================================
+         NAVIGATION
+    =========================================== -->
+
+    <br>
+
+
+    <a
+        href="{{ url_for('analyze') }}"
+        class="button"
+    >
+        📄 New Analysis
+    </a>
+
+
+    <a
+        href="{{ url_for('jobs') }}"
+        class="button"
+    >
+        💼 Job Recommendations
+    </a>
+
+
+    <a
+        href="{{ url_for('dashboard') }}"
+        class="button"
+    >
+        🏠 Dashboard
+    </a>
+
+
+    <a
+        href="{{ url_for('logout') }}"
+        class="button"
+    >
+        🚪 Logout
+    </a>
+
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}"
+></script>
+
+
+</body>
+
+</html>

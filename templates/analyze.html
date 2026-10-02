@@ -1,0 +1,335 @@
+<!-- {% if result %}
+
+<div class="ats-result">
+
+```
+<h2>📊 ATS Resume Analysis</h2>
+
+<div class="score-box">
+    <h3>ATS Score</h3>
+    <div class="score">
+        {{ result.get("ats_score", 0) }}%
+    </div>
+</div>
+
+<div class="score-box">
+    <h3>Job Match Score</h3>
+    <div class="score">
+        {{ result.get("match_score", 0) }}%
+    </div>
+</div>
+
+
+<h3>📈 ATS Score Breakdown</h3>
+
+{% set breakdown = result.get("ats_breakdown", {}) %}
+
+<div class="breakdown">
+
+    <p>
+        <strong>Keyword Match:</strong>
+        {{ breakdown.get("keyword_match", 0) }}%
+    </p>
+
+    <p>
+        <strong>Skills Match:</strong>
+        {{ breakdown.get("skills_match", 0) }}%
+    </p>
+
+    <p>
+        <strong>Education Match:</strong>
+        {{ breakdown.get("education_match", 0) }}%
+    </p>
+
+    <p>
+        <strong>Experience Match:</strong>
+        {{ breakdown.get("experience_match", 0) }}%
+    </p>
+
+    <p>
+        <strong>Job Title Match:</strong>
+        {{ breakdown.get("job_title_match", 0) }}%
+    </p>
+
+    <p>
+        <strong>Formatting Score:</strong>
+        {{ breakdown.get("formatting_score", 0) }}%
+    </p>
+
+</div>
+
+
+<h3>✅ Matching Skills</h3>
+
+<ul>
+    {% for skill in result.get("matching_skills", []) %}
+        <li>{{ skill }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>❌ Missing Skills</h3>
+
+<ul>
+    {% for skill in result.get("missing_skills", []) %}
+        <li>{{ skill }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>🔑 Matching Keywords</h3>
+
+<ul>
+    {% for keyword in result.get("matching_keywords", []) %}
+        <li>{{ keyword }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>⚠️ Missing Keywords</h3>
+
+<ul>
+    {% for keyword in result.get("missing_keywords", []) %}
+        <li>{{ keyword }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>💪 Strengths</h3>
+
+<ul>
+    {% for item in result.get("strengths", []) %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>⚠️ Weaknesses</h3>
+
+<ul>
+    {% for item in result.get("weaknesses", []) %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>💡 Suggestions</h3>
+
+<ul>
+    {% for item in result.get("suggestions", []) %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+
+<h3>💼 Recommended Roles</h3>
+
+<ul>
+    {% for role in result.get("recommended_roles", []) %}
+        <li>{{ role }}</li>
+    {% endfor %}
+</ul>
+```
+
+</div>
+
+{% endif %} -->
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>AI Resume Analyzer</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<h1>📄 AI Resume Analyzer</h1>
+
+<p>
+    Upload your resume and compare it with a job description.
+</p>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<form
+    action="{{ url_for('upload_resume') }}"
+    method="POST"
+    enctype="multipart/form-data"
+>
+
+    <!-- RESUME -->
+
+    <div class="form-group">
+
+        <label for="resume">
+            <strong>📄 Upload Resume</strong>
+        </label>
+
+        <br><br>
+
+        <input
+            type="file"
+            id="resume"
+            name="resume"
+            accept=".pdf,.txt"
+            required
+        >
+
+        <br><br>
+
+        <small>
+            Supported formats: PDF, TXT
+        </small>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- JOB DESCRIPTION FILE -->
+
+    <div class="form-group">
+
+        <label for="job_description_file">
+
+            <strong>
+                💼 Upload Job Description
+            </strong>
+
+        </label>
+
+        <br><br>
+
+        <input
+            type="file"
+            id="job_description_file"
+            name="job_description_file"
+            accept=".pdf,.txt"
+        >
+
+        <br><br>
+
+        <small>
+            Optional: Upload PDF or TXT job description
+        </small>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- JOB DESCRIPTION TEXT -->
+
+    <div class="form-group">
+
+        <label for="job_description">
+
+            <strong>
+                📝 Paste Job Description
+            </strong>
+
+        </label>
+
+        <br><br>
+
+        <textarea
+            id="job_description"
+            name="job_description"
+            rows="12"
+            placeholder="Paste the complete job description here..."
+        ></textarea>
+
+        <br><br>
+
+        <small>
+            You can upload a job description file OR paste the text.
+        </small>
+
+    </div>
+
+
+    <br>
+
+
+    <!-- ANALYZE -->
+
+    <button
+        type="submit"
+        class="button"
+    >
+        🤖 Analyze Resume
+    </button>
+
+</form>
+
+
+<br><br>
+
+
+<!-- NAVIGATION -->
+
+<a
+    href="{{ url_for('dashboard') }}"
+    class="button"
+>
+    📊 Dashboard
+</a>
+
+
+<a
+    href="{{ url_for('history') }}"
+    class="button"
+>
+    📋 History
+</a>
+
+
+<a
+    href="{{ url_for('jobs') }}"
+    class="button"
+>
+    💼 Job Recommendations
+</a>
+
+
+<a
+    href="{{ url_for('logout') }}"
+    class="button"
+>
+    🚪 Logout
+</a>
+```
+
+</div>
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+</body>
+</html>

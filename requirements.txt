@@ -1,0 +1,8 @@
+Flask
+mysql-connector-python
+pypdf
+PyMuPDF
+google-genai
+reportlab
+python-dotenv
+Werkzeug
